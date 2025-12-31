@@ -1,0 +1,17 @@
+import { Routes } from '@angular/router';
+import { ChatsComponent } from './chats-component/chats-component';
+import { ChatDetailComponent } from './chat-detail-component/chat-detail-component';
+import { NewChatComponent } from './new-chat-component/new-chat-component';
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'chats', pathMatch: 'full' },
+  {
+    path: 'chats',
+    component: ChatsComponent,
+    children: [
+      { path: 'nuevo', component: NewChatComponent },
+      { path: ':id', component: ChatDetailComponent },
+    ],
+  },
+  { path: '**', redirectTo: 'chats' },
+];

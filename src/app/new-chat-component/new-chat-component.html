@@ -1,0 +1,15 @@
+<h2>Nuevo chat</h2>
+<form (ngSubmit)="create()">
+  <label>
+    Nombre:
+    <input [(ngModel)]="name" name="name" required />
+  </label>
+  <label>
+    Mensaje inicial (opcional)
+    <input [(ngModel)]="initial" name="initial" />
+  </label>
+  <div>
+    <button type="submit">Enviar</button>
+    <button type="button" (click)="cancel()">Cancelar</button>
+  </div>
+</form>

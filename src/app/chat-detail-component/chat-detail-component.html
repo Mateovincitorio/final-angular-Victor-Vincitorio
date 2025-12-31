@@ -1,0 +1,22 @@
+@if(chatSignal()){
+<header>
+  <h2>{{ chatSignal()?.name }}</h2>
+  <span>{{ chatSignal()?.messages?.length }} mensajes</span>
+</header>
+<div class="messages" #messagesRef>
+  @for(message of chatSignal()?.messages ?? []; track message.id){
+  <div class="message" [class.from-me]="message.fromMe">
+    <p class="bubble">{{ message.text }}</p>
+    <div class="ts">{{ formatDate(message.date) }}</div>
+  </div>
+  } @empty {
+  <div class="no-messages">No hay mensajes</div>
+  }
+</div>
+<form class="message-form" (ngSubmit)="send()">
+  <input [(ngModel)]="newText" name="text" placeholder="Escribe un mensaje" required />
+  <button type="submit">Enviar</button>
+</form>
+} @else{
+<h2>Chat no encontrado</h2>
+}

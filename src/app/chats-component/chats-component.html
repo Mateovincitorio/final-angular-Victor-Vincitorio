@@ -1,0 +1,30 @@
+<div class="chats-container">
+  <aside class="sidebar">
+    <header>
+      <h2>Chats</h2>
+      <div class="header-controls">
+        <button class="themeBtn" (click)="toggleTheme()">
+          {{ theme === 'light' ? '🌙' : '☀️' }}
+        </button>
+        <button class="nuevoChat" routerLink="/chats/nuevo">Nuevo</button>
+      </div>
+    </header>
+    <ul class="chat-list">
+      @for(chat of chatService.chats(); track chat.id){
+      <li [routerLink]="['/chats', chat.id]" [class.selected]="selectedId === chat.id">
+        <div class="avatar" [style.background]="avatarColor(chat.name)">{{ chat.name[0] }}</div>
+        <div class="meta">
+          <div class="name">{{ chat.name }}</div>
+          <div class="last">{{ chat.lastMessage || '-' }}</div>
+        </div>
+      </li>
+      } @empty {
+      <li class="empty">No hay chats aun</li>
+      }
+    </ul>
+  </aside>
+  <main class="detail">
+    <div *ngIf="!selectedId" class="placeholder">Selecciona un chat a la izquierda</div>
+    <router-outlet></router-outlet>
+  </main>
+</div>

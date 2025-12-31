@@ -1,0 +1,41 @@
+:host{ display:block; height:100%; }
+
+header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid var(--border);
+}
+header h2{ margin:0; font-size:1.15rem; color:var(--text); }
+header span{ color:var(--muted); font-size:0.9rem }
+
+.messages{ padding:16px; flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:12px; }
+.no-messages{ color:#6b7280 }
+
+/* Message and animation */
+.message{ max-width:70%; display:flex; flex-direction:column; animation: fadeInUp .22s ease; }
+@keyframes fadeInUp{
+  from{ opacity:0; transform: translateY(6px) }
+  to{ opacity:1; transform: translateY(0) }
+}
+
+.message .bubble{ margin:0; padding:10px 12px; border-radius:14px; background:var(--surface); color:var(--text); box-shadow: var(--shadow-sm); }
+.message .ts{ margin-top:6px; font-size:0.78rem; color:var(--muted) }
+
+.message.from-me{ align-self:flex-end; text-align:right }
+.message.from-me .bubble{ background: linear-gradient(90deg,var(--primary),var(--accent)); color: #fff }
+
+/* Dark theme tweaks */
+body.dark-theme .bubble{ background: var(--surface); color:var(--text) }
+body.dark-theme .message.from-me .bubble{ background: linear-gradient(90deg,var(--accent),var(--primary)); }
+
+/* Form pinned to bottom */
+.message-form{ display:flex; gap:8px; padding:12px; border-top:1px solid #eef2ff; align-items:center }
+.message-form input{ flex:1; padding:10px 12px; border-radius:8px; border:1px solid var(--border); outline:none }
+.message-form input:focus{ box-shadow: 0 0 0 4px rgba(37,99,235,0.06); border-color:var(--primary) }
+.message-form button{ padding:8px 12px; background:var(--primary); color:#fff; border:none; border-radius:8px; cursor:pointer }
+.message-form button:hover{ background:var(--primary-600) }
+
+/* Detail column */
+:host{ display:flex; flex-direction:column; height:100%; }
+
+/* Dark theme tweaks */
+body.dark-theme .bubble{ background:#0b2748; color:#e6eef8 }
+body.dark-theme .message.from-me .bubble{ background: linear-gradient(90deg,#0ea5f1,#2563eb) }
